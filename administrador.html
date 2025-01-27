@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionário para Administradores do Condomínio Girassol</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+    <div class="line">
+        <button onclick="PDF()">Salvar PDF</button>
+    </div>
+
+    <div id="divAdministrador">
+        <h1>Questionário para Administradores do Condomínio Girassol</h1>
+        <p>Objetivo: Coletar informações detalhadas sobre os processos de administração, desafios enfrentados e sugestões para melhorias no gerenciamento do condomínio.</p>
+        <ol>
+            <!-- Informações Gerais -->
+            <li>Informações Gerais</li>
+            <ul>
+                <li>
+                    <label for="nome">1.1. Qual é o seu nome e cargo na administração do condomínio? (Opcional se preferir anonimato)</label>
+                    <input type="text" name="nome" id="nome" placeholder="Seu nome">
+                    <input type="text" name="cargo" id="cargo" placeholder="Seu cargo">
+                </li>
+                <li>
+                    <label>1.2. Há quanto tempo você trabalha na administração do Condomínio Girassol?</label>
+                    <ul>
+                        <li><button onclick="updateText(this)">(<span> </span>) Menos de 1 ano</button></li>
+                        <li><button onclick="updateText(this)">(<span> </span>) 1 a 3 anos</button></li>
+                        <li><button onclick="updateText(this)">(<span> </span>) 3 a 5 anos</button></li>
+                        <li><button onclick="updateText(this)">(<span> </span>) Mais de 5 anos</button></li>
+                    </ul>
+                </li>
+                <li>
+                    <label for="funcao">1.3. Qual é a sua principal função no condomínio?</label>
+                    <input type="text" name="funcao" id="funcao" placeholder="Ex.: Controle de finanças, gestão de segurança">
+                </li>
+            </ul>
+
+            <!-- Processos Administrativos -->
+            <li>Processos Administrativos</li>
+            <ul>
+                <li>
+                    <label>2.1. Quais são os maiores desafios que você enfrenta na administração do condomínio?</label>
+                    <ul>
+                        <li><button onclick="updateText(this)">(<span> </span>) Falta de comunicação com moradores</button></li>
+                        <li><button onclick="updateText(this)">(<span> </span>) Controle de visitantes</button></li>
+                        <li><button onclick="updateText(this)">(<span> </span>) Gerenciamento de finanças</button></li>
+                        <li><button onclick="updateText(this)">(<span> </span>) Organização de documentos</button></li>
+                        <li><button onclick="updateText(this)">(<span> </span>) Outros &nbsp;<input type="text" placeholder="Descreva"></button></li>
+                    </ul>
+                </li>
+                <li>
+                    <label>2.2. Os processos de registro de moradores e visitantes são eficientes?</label>
+                    <ul>
+                        <li><button onclick="updateText(this)">(<span> </span>) Sim</button></li>
+                        <li><button onclick="updateText(this)">(<span> </span>) Parcialmente</button></li>
+                        <li><button onclick="updateText(this)">(<span> </span>) Não</button></li>
+                    </ul>
+                </li>
+                <li>
+                    <label for="gestao">2.3. Há problemas recorrentes com a gestão de dados? Se sim, quais são os maiores desafios?</label>
+                    <textarea name="gestao" id="gestao" placeholder="Descreva"></textarea>
+                </li>
+                <li>
+                    <label>2.4. Existe algum sistema ou ferramenta tecnológica em uso atualmente?</label>
+                    <ul>
+                        <li><button onclick="updateText(this)">(<span> </span>) Sim &nbsp;<input type="text" placeholder="Especifique"></button></li>
+                        <li><button onclick="updateText(this)">(<span> </span>) Não</button></li>
+                    </ul>
+                </li>
+                <li>
+                    <label>2.5. Se um sistema de gestão fosse implementado, quais funcionalidades seriam mais importantes para você?</label>
+                    <ul>
+                        <li><button onclick="updateText(this)">(<span> </span>) Controle de visitantes</button></li>
+                        <li><button onclick="updateText(this)">(<span> </span>) Registro de moradores</button></li>
+                        <li><button onclick="updateText(this)">(<span> </span>) Monitoramento de veículos</button></li>
+                        <li><button onclick="updateText(this)">(<span> </span>) Comunicação com moradores</button></li>
+                        <li><button onclick="updateText(this)">(<span> </span>) Relatórios e estatísticas de acessos</button></li>
+                        <li><button onclick="updateText(this)">(<span> </span>) Outro &nbsp;<input type="text" placeholder="Especifique"></button></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Comunicação e Relacionamento -->
+            <li>Comunicação e Relacionamento</li>
+            <ul>
+                <li>
+                    <label>3.1. Como é a comunicação entre a administração e os moradores atualmente?</label>
+                    <ul>
+                        <li><button onclick="updateText(this)">(<span> </span>) Muito eficiente</button></li>
+                        <li><button onclick="updateText(this)">(<span> </span>) Razoável</button></li>
+                        <li><button onclick="updateText(this)">(<span> </span>) Ineficiente</button></li>
+                    </ul>
+                </li>
+                <li>
+                    <label>3.2. Quais canais são utilizados para a comunicação?</label>
+                    <ul>
+                        <li><button onclick="updateText(this)">(<span> </span>) E-mail</button></li>
+                        <li><button onclick="updateText(this)">(<span> </span>) WhatsApp ou outro aplicativo</button></li>
+                        <li><button onclick="updateText(this)">(<span> </span>) Avisos físicos</button></li>
+                        <li><button onclick="updateText(this)">(<span> </span>) Outros &nbsp;<input type="text" placeholder="Especifique"></button></li>
+                    </ul>
+                </li>
+                <li>
+                    <label for="reclamacoes">3.3. Você percebe reclamações frequentes dos moradores? Se sim, quais são os principais motivos?</label>
+                    <textarea name="reclamacoes" id="reclamacoes" placeholder="Descreva"></textarea>
+                </li>
+                <li>
+                    <label for="melhorias">3.4. Em sua opinião, o que pode ser feito para melhorar o relacionamento entre a administração e os moradores?</label>
+                    <textarea name="melhorias" id="melhorias" placeholder="Descreva"></textarea>
+                </li>
+            </ul>
+
+            <!-- Controle de Segurança e Acessos -->
+            <li>Controle de Segurança e Acessos</li>
+            <ul>
+                <li>
+                    <label for="controle_acesso">4.1. Como é feito o controle de acesso de visitantes atualmente?</label>
+                    <textarea name="controle_acesso" id="controle_acesso" placeholder="Descreva"></textarea>
+                </li>
+                <li>
+                    <label>4.2. Você considera o controle de acesso eficiente?</label>
+                    <ul>
+                        <li><button onclick="updateText(this)">(<span> </span>) Sim</button></li>
+                        <li><button onclick="updateText(this)">(<span> </span>) Não</button></li>
+                    </ul>
+                </li>
+                <li>
+                    <label for="incidentes">4.3. Há registro de incidentes relacionados à segurança no condomínio? Se sim, quais tipos de incidentes são mais comuns?</label>
+                    <textarea name="incidentes" id="incidentes" placeholder="Descreva"></textarea>
+                </li>
+                <li>
+                    <label for="sugestoes_seguranca">4.4. Em sua opinião, quais melhorias podem ser implementadas para aumentar a segurança do condomínio?</label>
+                    <textarea name="sugestoes_seguranca" id="sugestoes_seguranca" placeholder="Descreva"></textarea>
+                </li>
+            </ul>
+
+            <!-- Avaliação Geral e Sugestões -->
+            <li>Avaliação Geral e Sugestões</li>
+            <ul>
+                <li>
+                    <label for="avaliacao">5.1. Em uma escala de 1 a 5, como você avalia os processos administrativos do condomínio atualmente? (1 - Muito Ruim, 5 - Excelente)</label>
+                    <input type="number" name="avaliacao" id="avaliacao" min="1" max="5">
+                </li>
+                <li>
+                    <label for="prioridades">5.2. O que você acha que é prioridade para melhorar a gestão do condomínio?</label>
+                    <textarea name="prioridades" id="prioridades" placeholder="Descreva"></textarea>
+                </li>
+                <li>
+                    <label for="outros">5.3. Há algo mais que você gostaria de compartilhar sobre os desafios ou sugestões para o condomínio?</label>
+                    <textarea name="outros" id="outros" placeholder="Descreva"></textarea>
+                </li>
+            </ul>
+        </ol>
+        Agradecemos pela sua colaboração! Todas as informações fornecidas
+
+        <script src="script.js"></script>
+    </body>
+
+</html>
